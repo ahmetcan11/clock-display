@@ -85,10 +85,23 @@ public class ClockDisplay12Hr
      */
     private void updateDisplay()
     {
-      
-           
-         displayString = hours.getDisplayValue()  + ":" +
-                        minutes.getDisplayValue();               
+        String ampm = "";
+        String newHour= ""+hours.getValue() % 12;
+        
+        if (hours.getValue()> 12){
+         ampm = " pm"  ;
+         newHour = "0" +hours.getValue() % 12;
+         
+            }
+        
+            else if (hours.getValue()<10) 
+               { ampm = " am";
+                newHour = "0" +hours.getValue() % 12;}
+            else
+                {newHour = "" +hours.getValue() % 12;}
+   
+         displayString = newHour  + ":" +
+                        minutes.getDisplayValue() + ampm;               
                              
     }
 }
